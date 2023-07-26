@@ -53,6 +53,11 @@ class GridWorldDynamicProgramming(GridWorld):
         print(f"Environment \033[1m{self.__class__.__name__}")
         print("\n")
         
+        # Run policy iteration to get the optimal policy
+        policy_and_value_function = self.policy_iteration()
+        optimal_policy = policy_and_value_function.pi  # Get the optimal policy
+        optimal_value = policy_and_value_function.v  # Get the optimal value
+
         print("\t \033[1mPolicy Evaluation\033[0m")
         print("\t", self.policy_evaluation())
         print("\n")
@@ -66,3 +71,5 @@ class GridWorldDynamicProgramming(GridWorld):
         print("\n")
         
         print("-------------------------------------------------------------------------------------------------------")
+
+        return optimal_policy,optimal_value

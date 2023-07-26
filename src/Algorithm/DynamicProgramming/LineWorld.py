@@ -52,17 +52,30 @@ class LineWorldDynamicProgramming(LineWorld):
     def execute(self):
         print(f"Environment \033[1m{self.__class__.__name__}\033[0m")
         print("\n")
-        
+
+        # Run policy iteration to get the optimal policy with policy_iteration
+        #policy_and_value_function = self.policy_iteration()
+        #optimal_policy = policy_and_value_function.pi  # Get the optimal policy
+        #optimal_value = policy_and_value_function.v  # Get the optimal value
+
+        # Run policy iteration to get the optimal policy with value_iteration
+        policy_and_value_function = self.value_iteration()
+        optimal_policy = policy_and_value_function.pi  # Get the optimal policy
+        optimal_value = policy_and_value_function.v  # Get the optimal value
+
+
         print("\t \033[1mPolicy Evaluation\033[0m")
         print("\t", self.policy_evaluation())
         print("\n")
-        
+
         print("\t \033[1mPolicy Iteration\033[0m")
-        print("\t", self.policy_iteration())
+        print("\t", policy_and_value_function)
         print("\n")
-        
+
         print("\t \033[1mValue Iteration\033[0m")
         print("\t", self.value_iteration())
         print("\n")
-        
+
         print("-------------------------------------------------------------------------------------------------------")
+
+        return optimal_policy,optimal_value
